@@ -1,8 +1,6 @@
 # TypeScript Learnings
 
-This is not a comprehensive list. It is a personal list
-of things that I either found surprising or interesting
-when taking a deep dive into TypeScript.
+These notes are not a full list. They are a personal list of points I noticed as interesting or surprising.
 
 ## Transpilation
 
@@ -10,20 +8,20 @@ when taking a deep dive into TypeScript.
 
 - Typescript documentation refers to running `tsc` as **compilation**.
 
-- Most often I think compilation refers to creation of a (_significantly?_) lower-level language.
+- I think that compilation means to converting original source code to a
+  (_significantly?_) lower-level language.
 
-- I consider `tsc` does **transpilation** because it translates to a similarly
+- `tsc` does **transpilation** because it translates to a similarly
   high level language - JavaScript.
 
-- For compilation, I think of things like from C to assembly language (or
-  machine code) or from Java to bytecode.
+- **Compilation examples** would be, for example, C to assembly language/machine code
+or from Java to bytecode.
 
 ### TypeScript as Superset of JavaScript
 
 - `tsc` will output targets even if compilation fails.
 
-- This is the default because TypeScript is a superset of JavaScript and must
-  therefore support legacy JS.
+- This is the default because TypeScript is a superset of JavaScript.
 
 - `tsc --noEmitOnError` overrides the default. With or without this switch,
   `tsc` compilation failures will still report the failure reasons and return
@@ -83,23 +81,23 @@ when taking a deep dive into TypeScript.
   For example, the following will work in JS but not in TS.
 
   ```typescript
-  const o = { n: 0, s: 'a' };
-  o.n = 'b';
-  o.z = 'c';
+  const o = { n: 0, s: "a" };
+  o.n = "b";
+  o.z = "c";
   ```
 
 - Overriding object inference to a more general type is possible. For example `const o: object = { n: 0, s: 'a' };`
-now treats this as a generic object. There will be no
-intellisnse on members and any attempt to access a member
-will fail because the transpiler only knows this is a pointer
-to some object but not the object's type. It would need to
-be cast to a compatible real object type to use it.
+  now treats this as a generic object. There will be no
+  intellisnse on members and any attempt to access a member
+  will fail because the transpiler only knows this is a pointer
+  to some object but not the object's type. It would need to
+  be cast to a compatible real object type to use it.
 
 - Explicit object types can be defined like this (but better
-to use inference where possible otherwise both content and
-type definition would need to be refactored together):
+  to use inference where possible otherwise both content and
+  type definition would need to be refactored together):
 
-    ```typescript
-    const o: {n: number; s: string} 
-        = { n: 0, s: 'a' };
-    ```
+      ```typescript
+      const o: {n: number; s: string}
+          = { n: 0, s: 'a' };
+      ```

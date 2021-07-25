@@ -11,5 +11,8 @@
   "license": "Unlicense",
   "devDependencies": {
     "lite-server": "^2.6.1"
+  },
+  "dependencies": {
+    "typescript": "^4.3.5"
   }
 }
